@@ -1,0 +1,10 @@
+services:
+    custom-rasterizer-build:
+      build: .
+      volumes:
+        - ./.VERSION:/.VERSION
+      command: [sh, -c, 'cat /dist/.VERSION > ./.VERSION']
+      env_file: .env
+      scale: 0
+        
+        
