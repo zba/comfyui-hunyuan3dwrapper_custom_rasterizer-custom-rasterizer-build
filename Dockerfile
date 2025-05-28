@@ -9,9 +9,9 @@ RUN --mount=type=cache,target=/var/cache/apt apt-get update && apt-get install -
 WORKDIR /build
 
 COPY .VERSION* /
-RUN git clone --depth 1 --single-branch  https://github.com/MrForExample/Comfy3D_Pre_Builds.git
+RUN git clone --depth 1 --single-branch  https://github.com/kijai/ComfyUI-Hunyuan3DWrapper.git
 
-WORKDIR /build/Comfy3D_Pre_Builds/_Libs/hunyuan3d_v2_custom_rasterizer
+WORKDIR /build/ComfyUI-Hunyuan3DWrapper/hy3dgen/texgen/custom_rasterizer
 
 RUN mkdir -p dist && git rev-parse @ > dist/.VERSION
 
@@ -21,4 +21,4 @@ FROM busybox:1.36.1-uclibc as python-slim-comfyui-hunyuan3d-custom-rasterizer
 
 WORKDIR /
 
-COPY --from=build /build/Comfy3D_Pre_Builds/_Libs/hunyuan3d_v2_custom_rasterizer/dist /dist
+COPY --from=build /build/ComfyUI-Hunyuan3DWrapper/hy3dgen/texgen/custom_rasterizer/dist /dist
